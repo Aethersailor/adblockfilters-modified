@@ -279,6 +279,10 @@
 ! Bad: ||ad.doubleclick.net^ (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/227233
+verb.tw#$#.adsbox.ad-placement.ad-banner.textad.sponsorad { display: block !important; }
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||verb.tw^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/224352
 tstrs.me#%#//scriptlet('prevent-setTimeout', 'offsetHeight === 0')
 !#if (adguard_app_ios || adguard_ext_safari || adguard_ext_android_cb)
@@ -507,9 +511,9 @@ rjno1.com#%#function preventError(d){window.addEventListener("error",function(a)
 @@||img3.126.net/ntesrich/*/adControl-indexx-$script,domain=rjno1.com
 ||cpro.baidu.com/cpro/ui/rt.js$script,redirect=noopjs,domain=rjno1.com
 ||googleads.g.doubleclick.net/pagead/ads$subdocument,redirect=noopframe,domain=rjno1.com,important
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 ||126.net^$script,redirect=noopjs,domain=rjno1.com
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_ext_chromium && !adguard_ext_opera)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_app_cli && !adguard_ext_chromium && !adguard_ext_opera)
 rjno1.com#@#ins.adsbygoogle[data-ad-client]
 rjno1.com#@#ins.adsbygoogle[data-ad-slot]
 @@||hm.baidu.com/hm.js$domain=rjno1.com
@@ -761,7 +765,7 @@ t66y.com#%#//scriptlet('prevent-setTimeout', 'html')
 t66y.com#@#.tips
 t66y.com#@#.sptable_do_not_remove
 !#endif
-!+ NOT_PLATFORM(windows, mac, android, ext_chromium, ext_edge)
+!+ NOT_PLATFORM(windows, mac, android, cli, ext_chromium, ext_edge)
 t66y.com#$?#.sptable_do_not_remove { display: block !important; visibility: hidden !important; }
 ||alicdn.com^$domain=t66y.com
 ||sinaimg.cn^$domain=t66y.com
@@ -945,7 +949,7 @@ x99av.com#%#//scriptlet('set-constant', 'ADSOBJET', 'emptyObj')
 embedrise.com#%#//scriptlet('prevent-window-open')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158639
 yfsp.tv,aiyifan.tv,iyf.tv#%#//scriptlet('abort-on-stack-trace', 'Object.prototype.pgmp', 'invokeInterstitial')
-!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android)
+!#if (!adguard_app_windows && !adguard_app_mac && !adguard_app_android && !adguard_app_cli)
 yfsp.tv,aiyifan.tv,iyf.tv#$#.bg-overlayer { pointer-events: unset !important; }
 yfsp.tv,aiyifan.tv,iyf.tv#%#//scriptlet('remove-class', 'publicplay', '#main-player')
 yfsp.tv,aiyifan.tv,iyf.tv#%#//scriptlet('abort-on-property-read', 'Object.prototype.ShouldLoadAds')
@@ -1018,7 +1022,7 @@ msn.cn#%#//scriptlet('json-prune', 'configs.*.properties.slideshowWCSettings.int
 ! which is set by "https://log.mmstat.com/eg.js" script, but it's blocked on DNS level, so we need to set cookie manually.
 ! Original cookie value is the same as ETag value from "https://log.mmstat.com/eg.js" response, but it's not static.
 ! So as a workaround we use hardcoded value from "https://g.alicdn.com/kplayer/kuplayer/4.5.26-xmedia/index.js" script.
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 v.youku.com#%#(()=>{const e="cna",t=()=>null!==document.cookie.match(new RegExp(`^${e}=|; ${e}=`));if(t())return;const o=new MutationObserver((()=>{const o=document.querySelector("preplay-layer > error-layer .preLayer-title");o&&o.textContent.includes("请关闭VPN代理软件或广告拦截插件后重试")&&!t()&&(document.cookie=`${e}=MwCHGEQKugYCAWoLKcbU0UGk;`,window.location.reload())})),n=document.documentElement;o.observe(n,{attributes:!0,childList:!0,subtree:!0}),setTimeout((()=>o.disconnect()),1e4)})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/34910
 goodav17.com#%#//scriptlet("abort-on-property-read", "popunder")
@@ -1297,7 +1301,7 @@ $script,xmlhttprequest,third-party,domain=00ksw.com|01zww.com|0biquge.com|114zw.
 wikisport.cc#%#//scriptlet('prevent-addEventListener', 'click', 'window.open')
 wikisport.cc#%#//scriptlet('prevent-window-open')
 twmanga.com###baoziAdPopup
-eporner2.top,chuanghongjituan.com##.streamer-container2
+dgav17.com,eporner2.top,chuanghongjituan.com##.streamer-container2
 *$script,third-party,domain=huanggua22.com
 .gif|$image,third-party,domain=huanggua22.com
 huanggua22.com##[src^="https://tutu.facaiimage.com/"]
@@ -3345,14 +3349,14 @@ netfly.*,netfly.tv##div[class*="tt-"] > a[target="_blank"] + span.tt-icon-close
 ! https://github.com/AdguardTeam/AdguardFilters/issues/210237
 huavod.com,huaren.live#%#//scriptlet('set-constant', 'ConFig.config.ads', 'emptyObj')
 ! TODO: remove hints when this issue is resolved - https://github.com/AdguardTeam/Scriptlets/issues/517
-!+ NOT_PLATFORM(windows, mac, android)
+!+ NOT_PLATFORM(windows, mac, android, cli)
 huavod.com,huaren.live#%#//scriptlet('trusted-replace-node-text', 'script', 'ConFig', 'let ConFig', 'var ConFig')
-!#if (adguard_app_windows || adguard_app_mac || adguard_app_android)
+!#if (adguard_app_windows || adguard_app_mac || adguard_app_android || adguard_app_cli)
 ||huavod.com/player/$replace=/let ConFig/var ConFig/,document,subdocument
 ||huaren.live/player/$replace=/let ConFig/var ConFig/,document,subdocument
 !#endif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177520
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 /gmu-download.oss-$image,redirect-rule=1x1-transparent.gif,domain=voflix.vip
 ! https://github.com/AdguardTeam/AdguardFilters/issues/204700
 ! https://github.com/AdguardTeam/AdguardFilters/issues/202922
@@ -3422,7 +3426,7 @@ m.nivod2.com,m.nivod2.tv,m.nivod4.com,m.nivod4.tv,m.nivod5.tv,m.nivod7.tv,m.nivo
 !
 ! https://github.com/AdguardTeam/AdguardFilters/issues/154676
 ! Website shows "Request failed with status code 500" error when request is blocked by apps
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 ||adpai.thepaper.cn^$xmlhttprequest,redirect-rule=nooptext,domain=thepaper.cn
 ! yeyemo4.com
 ! frequently changed domain
@@ -3447,7 +3451,7 @@ $script,third-party,denyallow=cdn.yinghuazy.xyz|rsc.cdn77.org|linkvertise.com|fa
 !+ NOT_PLATFORM(ext_ublock)
 $script,third-party,denyallow=myqcloud.com|bytecdntp.com|pddpic.com|googletagmanager.com,domain=yjys.me
 ! https://github.com/AdguardTeam/AdguardForWindows/issues/4227
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 doubibackup.com##body div.guangg
 ! fix infinite call
 ||52996.me/upload/ad/$media,redirect=noopmp4-1s
@@ -3511,14 +3515,14 @@ adguard.info,adguard.com,adguard.app#$#.hello_from_adguard_advanced_protection_i
 ! https://github.com/AdguardTeam/AdguardFilters/issues/211243
 ! https://github.com/AdguardTeam/CoreLibs/issues/2003
 ! TODO: Remove when CoreLibs issue is fixed
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 ||cdn.dingxiang-inc.com/ctu-group/constid-js/index.js$replace=/(^\/\*!.*?\*\/)/\$1try{const t=document.head\,e=document.createElement("style");e.type="text\/css"\,e.textContent=".wp > .a_t:has(> table > tbody > tr > td > .adsbygoogle) { display: none !important; }"\,t.appendChild(e)}catch(t){};/,domain=right.com.cn
 ! https://github.com/AdguardTeam/AdguardFilters/issues/158639
 ||yfsp.tv/app/*.js$replace=/this\.shouldSkipAds\|\|/!0||/
 ||iyf.tv/app/*.js$replace=/this\.shouldSkipAds\|\|/!0||/
 ||aiyifan.tv/app/*.js$replace=/this\.shouldSkipAds\|\|/!0||/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/114470
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 ||101.qq.com/js/base.js$replace=/(el\.getAttribute\("type"\) === "text\/javascript")/\(\$1 && !el\.getAttribute\("nonce"\)\)/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/87176
 ! https://github.com/AdguardTeam/AdguardFilters/issues/54359
@@ -3540,7 +3544,7 @@ adguard.info,adguard.com,adguard.app#$#.hello_from_adguard_advanced_protection_i
 ! https://github.com/AdguardTeam/AdguardFilters/issues/225957
 mnya.tw#@##advertise
 ! https://github.com/AdguardTeam/AdguardFilters/issues/225120
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 ||republicworld.com/_app/immutable/assets/FloatAd.*.css$redirect-rule=nooptext
 ! https://github.com/AdguardTeam/AdguardFilters/issues/223843
 xjwiki.github.io#@##pub_head
@@ -3587,7 +3591,7 @@ huya.com#@##banner
 ! https://github.com/AdguardTeam/AdguardFilters/issues/187167
 @@||imasdk.googleapis.com/js/sdkloader/ima3.js$domain=nowplayer.now.com,important
 ! https://github.com/AdguardTeam/AdguardFilters/issues/183849
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 @@||s1-static.msstatic.com/mfe/huya_main/*.html$xmlhttprequest,elemhide,jsinject,content,extension,domain=huya.com
 ! 360doc.com - fixing frames with content (chat, security settings)
 ||360doc.com^*.html?t=$badfilter
@@ -3690,7 +3694,7 @@ gamersglobal.de#@#.gg-box
 ! https://github.com/AdguardTeam/AdguardFilters/issues/115152
 @@||img*.kangaroobro.com/images/$image,domain=leyuman.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/114332
-!+ PLATFORM(windows, mac, android)
+!+ PLATFORM(windows, mac, android, cli)
 @@||cloud.189.cn/web/subapp/main.html$jsinject,elemhide,extension
 ! https://github.com/AdguardTeam/AdguardFilters/issues/114739
 @@||amazonaws.com/storage.liveabc.com/ads/$domain=store.liveabc.com
@@ -3701,7 +3705,7 @@ gamersglobal.de#@#.gg-box
 @@||520cc.cc/ad/520cc/images/logo3w.png
 @@||520cc.cc/ad/520cc/images/tw_search_s.gif
 ! https://github.com/AdguardTeam/AdguardFilters/issues/99153
-!+ NOT_PLATFORM(windows, mac, android, ext_chromium)
+!+ NOT_PLATFORM(windows, mac, android, cli, ext_chromium)
 @@||cnzz.com/z_stat.php?id=$domain=fapiao.bangnimang.net
 ! https://github.com/AdguardTeam/AdguardFilters/issues/97793
 fuzhou.baixing.com#@#.ad-title
@@ -4221,7 +4225,7 @@ bmvc2020-conference.com#@#div[id][style="width: 100%;"] > iframe[scrolling="no"]
 /html/709/*.js
 /html/taobao_focus_
 /huijiad/huijiad.
-/huya/main/widget/roomGg
+/huya/main3/widget_roomGaTop_
 /huya_promotion_content_
 /ifeng_jdttemplate.js
 /ifengRotatorAd.js
@@ -5572,12 +5576,26 @@ newduba.cn###jq_youxi
 .z.dkt-ib.com
 ||cnzz.trafficmanager.net^
 ||cupfox.app^$third-party
+||kvxc7buwv3.com^
+||z9sab7vr0b.com^
+||ynkunarlg.com^
+||verboten84.top^
+||lkhmlx.icu^
+||rypebb.icu^
+||qmeqraen.com^
+||wral.cn^
 ||b4641y3dw.com^
 ||vigyn4gpx.com^
 ||nhlrzf.icu^
 ||invocation22.com^
 ||neraenyqq.com^
 ||bfgu.cn^
+||trlzqly.com^
+||hyaplnr.com^
+||af1tsjdta.com^
+||cbhzxctgm.com^
+||d48paxyhx.com^
+||aiheatta.com^
 ||w97nv5ibv4.com^
 ||1tvg524vih.com^
 ||pepwpv.icu^
@@ -13365,7 +13383,6 @@ meijutt.*/js/pcjs/
 ||msdn.hk/templets/msdn/css/index.js
 ||msdn.hk/templets/msdn/css/msdng.js
 ||msstatic.com/huya/main/img/mc-recom_
-||msstatic.com/huya/main3/widget/roomGg
 ||msstatic.net/main3/common/assets/template/head/ad.
 ||mtime.cn/tg/
 ||muyuge.com/fw.html/
