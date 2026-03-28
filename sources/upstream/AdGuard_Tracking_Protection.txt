@@ -35,6 +35,8 @@ spletnik.ru#%#//scriptlet('set-local-storage-item', '/^_ym/', '$remove$')
 spletnik.ru#%#//scriptlet('set-local-storage-item', 'adrcid', '$remove$')
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/227878
+krakenfiles.com#%#//scriptlet('fingerprintjs3')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/222154
 muylinux.com$$script:contains(isAmpDevMode)
 muylinux.com#%#//scriptlet('abort-current-inline-script', 'sessionStorage', 'isAmpDevMode')
@@ -356,7 +358,7 @@ home-learn.co.kr#%#//scriptlet("set-constant", "eglc", "noopFunc")
 home-learn.co.kr#%#//scriptlet("set-constant", "eglc.op", "noopFunc")
 ! unito.life infinite call to keentracking
 unito.life#%#//scriptlet('abort-current-inline-script', 'KeenTracking')
-unito.life$$script[tag-content="KeenTracking"]
+unito.life$$script:contains(KeenTracking)
 ! https://github.com/AdguardTeam/AdguardFilters/issues/86115
 notonthehighstreet.com#%#//scriptlet('set-constant', 'window.DD_RUM.init', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/82132
@@ -76251,6 +76253,10 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||spm.gmarket.co.kr^
+||atsssl.gmarket.co.kr^
+||utsssl.gmarket.co.kr^
+||ats.gmarket.co.kr
 ||weblog.eseoul.go.kr^
 ||qa-track.ssg.com^
 ||track.ssg.com^
@@ -76554,7 +76560,7 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ||usage.trackjs.com^
 ||rainbow-prod-jdlog.ldoverseas.com^
 ||posthog.lingvanex.com^
-||analytics.vgtimes.com^
+||analytics.vgtimes.
 ||bee.tc.easebar.com^
 ||site-see.slgnt.eu^
 ||site-azp.slgnt.eu^
@@ -152236,6 +152242,7 @@ zmail.mtrl.me$image
 !+ NOT_OPTIMIZED
 /.well-known/private-click-measurement
 !
+/nelio-ab-testing/assets/dist/js/visitor-type.js
 /elastic-apm-rum.umd.min.js
 /sftouch?branchId=
 /digibox.gif?c=$image
@@ -153033,6 +153040,13 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
 ! NOTE: Specific rules
 !
+||aviasales.*-analytics.
+||aviasales.*/analytics_pv.
+||aviasales.*/sentry-replay.
+||us-central1-terrific-live.cloudfunctions.net/userEvents|
+||openpanel.velarium.cc/api/track|
+||mk-log.makeshop.co.kr/static/js/analytics.min.js
+||mk-log.makeshop.co.kr/analytics/events
 ||cdn.apifox.com/www/assets/js/apifox-app-event-tracking.min.js
 ||cdn-js.xyz/code?
 /v1/rgstr?k=client-$xmlhttprequest,redirect-rule=noopjson
@@ -162553,6 +162567,8 @@ d4?appid*type*
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/227915
+@@||cdn.tagcommander.com^$domain=monespaceemprunteur.cnp.fr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/227280
 @@||api.cxense.com/public/widget/$domain=tv-tokyo.co.jp
 ! https://github.com/AdguardTeam/AdguardFilters/issues/227097
@@ -169421,6 +169437,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||verdantsculpture.com^
 ||verifiedarts.com^
 ||verseballs.com^
+||versuswall.com^
 ||vibrantcelebration.com^
 ||vibrantgale.com^
 ||vibranthaven.com^
@@ -169458,6 +169475,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||waxsirens.com^
 ||wayjoyfarm.com^
 ||weatherbytes.net^
+||weatherpush.net^
 ||websitesdude.com^
 ||weeklybanner.com^
 ||wellgroomedapparel.com^
