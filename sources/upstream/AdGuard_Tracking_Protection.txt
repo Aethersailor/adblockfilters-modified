@@ -573,6 +573,7 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 !
 !
 !
+||tpwdg.com^$script
 ||monitoragc.xyz^
 ||analytics.kelasmalam.net^
 ||metrics.rapidedge.io^
@@ -77712,6 +77713,8 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||c.qiandao.cn^
+||logs.tourister.ru^
 ||wa.wawlabs.com^
 ||dsas-t.danawa.com^
 ||spm.gmarket.co.kr^
@@ -158200,6 +158203,7 @@ zonedirector.avadacom.com$image
 /detroitchicago/reno.js
 /detroitchicago/overlandpark.js
 /script.tagged-events.js
+/script.tagged-events.outbound-links.js
 /_vercel/insights/script.js
 /_vercel/speed-insights/script.js
 /p/tm.js?
@@ -158963,6 +158967,10 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
 ! NOTE: Specific rules
 !
+||rainbet.com/api/ping
+lifehacker.jp###mainContent > div[class^="articles_pArticles_Title_"]:has(+ div[class^="displayhandler_"] > div > div[id^="cxMore"])
+tourister.ru#%#//scriptlet('href-sanitizer', 'a[href*="/go?"]', '?url')
+||api.mercari.jp/client_events/
 ||etsy.com/api/v*/ajax/public/recs-interactions
 ||livemint.com/lm-img/js/lm-inp-tracker.js
 ||cdn.r10.net/modern/js/assets.js
@@ -164534,6 +164542,9 @@ gmarket.co.kr#%#//scriptlet('fingerprintjs2')
 !
 ! NOTE: Specific rules
 !
+! https://github.com/easylist/easylist/issues/23743
+hm-f.jp/ho.php?t=
+hm-f.jp%2Fho.php%3Ft=
 ! newegg.com
 newegg.com/mr/*.gif?r=
 newegg.com%2Fmr%2F*.gif%3Fr%3D
@@ -167232,6 +167243,11 @@ dlsdk.appsflyer.com^
 !
 ! NOTE: Regular rules
 !
+||mp-gb-sdklog.kurogames.net^
+-datareceiver.aki-game.net^
+||telemetry.split.io^
+||events.split.io^
+||prod-ue1-metrics.hingeprod.net^
 ||api.event.appstack.tech^
 ||detailroi.com^
 ||detaillog-global-dual.coolgcloud.com^
@@ -168501,6 +168517,10 @@ d4?appid*type*
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/228173
+@@||alicdn.com/alilog/mlog/aplus_v2.js$domain=qianwen.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/227924
+@@||edge.adobedc.net/ee/$xmlhttprequest,domain=vivo.com.br
 ! https://github.com/AdguardTeam/AdguardFilters/issues/228000
 @@||cdn.optimizely.com/datafiles/*.json$domain=scheels.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/227915
