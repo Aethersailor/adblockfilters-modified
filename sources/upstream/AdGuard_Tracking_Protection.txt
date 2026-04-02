@@ -573,6 +573,8 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 !
 !
 !
+||bbc-reporting-api.app^
+||spindl.link^
 ||tpwdg.com^$script
 ||monitoragc.xyz^
 ||analytics.kelasmalam.net^
@@ -2626,7 +2628,7 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ||adnz.co^$third-party
 ||cloud.roistat.com^$third-party
 ||nrich.ai^$third-party
-||adoric.com^$third-party
+||adoric.com^
 ||stack-sonar.com^$third-party
 ||mindtake.com^$third-party
 ||leadlab.click^$third-party
@@ -77713,6 +77715,12 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||event.dxmdp.com^
+||beacon.cdnpure.com^
+||r.cdnpure.com^
+||ja*.apppure.net^
+||udbdf.apkpure.com^
+||a.apkpures.xyz^
 ||c.qiandao.cn^
 ||logs.tourister.ru^
 ||wa.wawlabs.com^
@@ -158967,6 +158975,11 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
 ! NOTE: Specific rules
 !
+||apkpure.com/static/script/device-*-min.js
+apkpure.com#%#//scriptlet('set-local-storage-item', '__BEACON_deviceId', '$remove$')
+apkpure.com#%#//scriptlet('remove-node-text', 'script', '/deviceId|__apkpureFirstInteractionType|fingerprintjs|pvid/i')
+decrypt.co#%#//scriptlet('set-local-storage-item', 'spindl_persistent_id', '$remove$')
+phys.org##.news-related
 ||rainbet.com/api/ping
 lifehacker.jp###mainContent > div[class^="articles_pArticles_Title_"]:has(+ div[class^="displayhandler_"] > div > div[id^="cxMore"])
 tourister.ru#%#//scriptlet('href-sanitizer', 'a[href*="/go?"]', '?url')
@@ -161390,7 +161403,11 @@ brasil247.com###taboola-mid-article-leia-mais
 ||snapchat.com/web-analytics
 ||snapchat.com/report-metrics/
 ||web.snapchat.com/web-blizzard/web/send^
+||gcp.api.snapchat.com/web-blizzard/web/send^
 ||accounts.snapchat.com/accounts/static/scripts/pixel.js
+||accounts.snapchat.com/accounts/sso?client_id=snapchat-com-metrics
+||aws.api.snapchat.com/snapchat.cdp.cof.CircumstancesService/targetingQuery^
+||aws.api.snapchat.com/snapchat.ab.exposure_service.ExposureService/BatchUpdateAbExposure^
 ||snap-api.arkoselabs.com/metrics/
 ||zona.plus/ajax/visit-stats
 ||showstopped.com/owa/log.php
@@ -166196,6 +166213,8 @@ $cookie=bf_visit
 ! Bad:  ||monerominer.rocks^$third-party (should be in adservers.txt)
 !
 !
+! apkpure.com
+||apkpure.com^$cookie=_qimei
 ! expero.ru
 ||expero.ru^$cookie=deviceId
 ! my.club
@@ -167243,6 +167262,14 @@ dlsdk.appsflyer.com^
 !
 ! NOTE: Regular rules
 !
+||mixpanel-proxy-ivbdkvonca-uc.a.run.app^
+||tc.zxcvbnml.com^
+||fpconfig.net^
+||ingest.databuckets.com^
+||report.tantanapp.com^
+||pco-sm-log.tantanapp.com^
+||app-log-lab.immomo.com^
+||aqueduct-collector-prod.alar.my^
 ||mp-gb-sdklog.kurogames.net^
 -datareceiver.aki-game.net^
 ||telemetry.split.io^
@@ -167503,7 +167530,7 @@ dlsdk.appsflyer.com^
 ||usdiagnosis.icocofun.com^
 ||eats-ads-event-capture.coupang.com^
 ||trackchecker.ru/stat/
-||googletagmanager.com^$app=app.shinagawa.listentonovels.androidApp|com.edadeal.android|com.mysticsense.androidapp
+||googletagmanager.com^$app=app.shinagawa.listentonovels.androidApp|com.edadeal.android|com.mysticsense.androidapp|com.walla.wallasports
 ||mon*-misc.fqnovel.com^
 ||clientlog.perfectworldgames.com^
 ||log1.perfectworldgames.com^
@@ -175457,6 +175484,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||wikiwhatwhere.com^
 ||wildcommittee.com^
 ||wildwoodavenue.com^
+||windbeetle.com^
 ||wirecomic.com^
 ||wiredforcoffee.com^
 ||wirenewsletter.com^
