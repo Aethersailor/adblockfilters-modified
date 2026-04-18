@@ -573,6 +573,8 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 !
 !
 !
+||content-settings.com^
+||config-factory.com^
 ||aan8bq.ru^
 ||bonuscake.ru^$third-party
 ||inventorycache.com^$xmlhttprequest,redirect=noopjson
@@ -182137,6 +182139,12 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
 ! NOTE: Specific rules
 !
+||s-cdn.anthropic.com/s.js
+||claude.ai/api/event_logging/
+||avito.ru/clickstream/events/
+||mon.avito.ru^
+||cdn.amplitude.com/engagement-browser/
+||www.history.com/editorial/vendor/
 ||static.rebelboost.com/tracking/
 /rptracker.js$domain=rshb.ru
 burger-king.by#%#//scriptlet('set-local-storage-item', 'mindboxDeviceUUID', '$remove$')
@@ -190502,6 +190510,7 @@ dlsdk.appsflyer.com^
 !
 ! NOTE: Regular rules
 !
+||otel-collector.reliability.smartnews.net^
 ||report-edge.rtesvc.com^
 ||rakam-api.aptoide.com^
 ||diagnostics.rakam.io^
@@ -191709,6 +191718,8 @@ d4?appid*type*
 ! Bad:  @@||example.org^$stealth (should be in AdGuard Base - allowlist_stealth.txt)
 !
 !
+! com.wishabi.flipp - brochure pictures broken
+@@||conversions.appsflyersdk.com^$app=com.wishabi.flipp
 ! Repeated requests, two or more in one second if blocked - https://old.reddit.com/r/Adguard/comments/ztbv96/how_do_i_stop_this_my_phone_is_overheating_and/
 @@||api2.branch.io^$app=com.spotify.music
 @@||app.adjust.world^$app=com.spotify.music
@@ -191817,6 +191828,9 @@ d4?appid*type*
 !
 !
 !
+! https://github.com/easylist/easylist/issues/23935
+@@||go.ezodn.com/ezvideo/$stylesheet,domain=open.video
+@@||open.video/ezais/analytics$~third-party
 ! https://github.com/AdguardTeam/AdguardFilters/issues/228689
 @@||googletagmanager.com/gtm.js$domain=creator.fronius.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/228463
