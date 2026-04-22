@@ -577,7 +577,6 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ||config-factory.com^
 ||aan8bq.ru^
 ||bonuscake.ru^$third-party
-||inventorycache.com^$xmlhttprequest,redirect=noopjson
 ||getter.fun^
 ||clik.by^$third-party
 ||metrix.luxnet.io^
@@ -79274,6 +79273,9 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||android-beacons.xumo.com^
+||roku-beacons.xumo.com^
+||samsung-beacons.xumo.com^
 ||stats.zincdrive.com^
 ||nid.the-sun.com^
 ||log.api-maps.yandex.
@@ -182139,6 +182141,15 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
 ! NOTE: Specific rules
 !
+||chatgpt.com/backend-api/beacons/
+||chatgpt.com/backend-api/sentinel/ping
+||lg-chatbot.com/chatbot/v*/api/client_logger
+||cv-library.co.uk/assets/js/ext/amplitude-
+||cv-library.co.uk/assets/js/ext/clickstream.
+||cv-library.co.uk/assets/js/experiments-amplitude-
+||cv-library.co.uk/assets/js/clickstream
+||gobankingrates.com/wp-content/themes/rockefeller-lite/assets/build/event-tracking.js
+||gobankingrates.com/et/
 ||dce-frontoffice.imggaming.com/api/v2/event/
 ||hls-beacons-us.xumo.com/hlsstream/v*/beacon?
 ||ducttapeai.com/api/tracking/event
@@ -189463,6 +189474,8 @@ $cookie=bf_visit
 ! Bad:  ||monerominer.rocks^$third-party (should be in adservers.txt)
 !
 !
+! gobankingrates.com
+||gobankingrates.com^$cookie=visitor_id
 ! https://github.com/AdguardTeam/AdguardFilters/issues/229275
 ||invb.ru^$cookie=/^pa_/
 ! https://ridibooks.com/webtoon/recommendation
@@ -190525,6 +190538,9 @@ dlsdk.appsflyer.com^
 !
 ! NOTE: Regular rules
 !
+||mobileconfig.sascdn.com^
+||cirrus-full-snapshots-track-csv-v1-0-na-prod.s3.amazonaws.com^
+||analytics.pocketfm.com^
 ||otel-collector.reliability.smartnews.net^
 ||report-edge.rtesvc.com^
 ||rakam-api.aptoide.com^
@@ -191831,6 +191847,7 @@ d4?appid*type*
 !
 !
 !### Temporary ###
+||acustomizedgift.com^$~xmlhttprequest,badfilter
 ||kindhush.com^$redirect=noopjson,xmlhttprequest,badfilter
 ||kindhush.com^$~xmlhttprequest,badfilter
 ! https://github.com/AdguardTeam/AdguardForWindows/issues/5372
@@ -196376,7 +196393,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||musicvideogenome.com/javascripts/stats.js
 @@||muzu.tv/flash/*tracking
 @@||mybuys.com/webrec/wr.do?
-@@||mycokerewards.com^*/webtrends/mcr3-webtrends_POST_$script
 @@||mycommunitynow.com/includes/JI_trafficTracking.js$domain=mycommunitynow.com
 @@||nationwide.co.uk/_/js/webAnalytics.js
 @@||ncbi.nlm.nih.gov/stat?
@@ -196479,7 +196495,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||walmartimages.com/webanalytics/wmStat/wmStat.jsp$domain=walmart.com
 @@||wbshop.com/fcgi-bin/iipsrv.fcgi?
 @@||webtrack.dhlglobalmail.com^
-@@||webtrends.com^*/events.svc$subdocument,domain=mycokerewards.com
 @@||webtrendslive.com^*/wtid.js?$domain=att.yahoo.com
 @@||westelm.com^*/bloomreach.js
 @@||westjet.com/js/webstats.js
@@ -197244,6 +197259,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||endurablebulb.com^
 ||energeticexample.com^
 ||energeticladybug.com^
+||energyfools.com^
 ||engineertrick.com^
 ||enigmaprint.com^
 ||enigmaticcanyon.com^
@@ -197605,6 +197621,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||internalcondition.com^
 ||internalsink.com^
 ||intricateberry.com^
+||inventorycache.com^$~xmlhttprequest
 ||inventtango.com^
 ||invoicetick.com^
 ||iotapool.com^
@@ -198849,8 +198866,4 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||zipthelake.com^
 ||zlp6s.pw^
 ||zonewedgeshaft.com^
-! noopjson
-||acustomizedgift.com^$redirect=noopjson,xmlhttprequest
-||kindhush.com^$redirect=noopjson,xmlhttprequest
-||oceancloudhosts.com^$redirect=noopjson,xmlhttprequest
 
