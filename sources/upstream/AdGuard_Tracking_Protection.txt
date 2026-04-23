@@ -573,6 +573,11 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 !
 !
 !
+||t.journify.io^
+||static.journify.io^
+||umamix.fadunews.in^
+||acustomizedgift.com^$script,redirect=noopjs
+||globalsiteanalytics.com^
 ||content-settings.com^
 ||config-factory.com^
 ||aan8bq.ru^
@@ -79273,6 +79278,18 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||sas.a.int-nft.peacocktv.com^
+||sas.a.peacocktv.com^
+||sas.a.stable-int.peacocktv.com^
+||sas.f.int-nft.peacocktv.com^
+||sas.f.peacocktv.com^
+||sas.f.stable-int.peacocktv.com^
+||sas.int-nft.peacocktv.com^
+||sas.peacocktv.com^
+||sas.stable-int.peacocktv.com^
+||goto.simplywall.st^
+||swssp.simplywall.st^
+||swsdd.simplywall.st^
 ||android-beacons.xumo.com^
 ||roku-beacons.xumo.com^
 ||samsung-beacons.xumo.com^
@@ -182141,6 +182158,18 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 !
 ! NOTE: Specific rules
 !
+||sitereport.netcraft.com/wbtx/
+||forbiddenbodyjewelry.com/wp-json/pys-*/event
+||viduro.top/api/heartbeat
+||fluxor-wrapper.api.emerios.com/api/v1/tracking/event/track
+||genmobile.com/api/log
+||smart.link/imp/
+||unicreditgroup.eu/content/dam/unicreditgroup-eu/common/analytics/
+||rudderstack.com/v1/track|
+||rudderstack.com/v1/identify|
+||rudderstack.com/v1/batch?writeKey=
+||simplywall.st/backend/flags/proxy/client/metrics
+||doofinder.com/api/v*/stats/
 ||chatgpt.com/backend-api/beacons/
 ||chatgpt.com/backend-api/sentinel/ping
 ||lg-chatbot.com/chatbot/v*/api/client_logger
@@ -182153,7 +182182,8 @@ $cookie=_awl;maxAge=30,domain=nypost.com|al.com|9news.com
 ||dce-frontoffice.imggaming.com/api/v2/event/
 ||hls-beacons-us.xumo.com/hlsstream/v*/beacon?
 ||ducttapeai.com/api/tracking/event
-||moneywise.com/scottie/api/cdp/v1/event|
+/scottie/api/cdp/v1/event|$domain=moneywise.com|money.ca
+/js/adobe-analytics.js$domain=moneywise.com|money.ca
 ||fileditchfiles.me/api/plausible
 /https:\/\/www\.fakt\.pl\/[a-zA-Z0-9_]{40,200}/$xmlhttprequest,~third-party,match-case,domain=fakt.pl
 play.xumo.com#%#//scriptlet('set-local-storage-item', 'com.kochava.tracker.EventQueue', '$remove$')
@@ -184776,7 +184806,7 @@ jiji.com##.RecommendUnderlayer
 ||flipboard.com/api/v2/reporting/datadog
 ||you.com/api/recordEvent
 ||lego.com/api/dl-event-ingest
-||performance.radar.cloudflare.com/beacon.js
+||performance.radar.cloudflare.com/beacon.js$domain=~cloudflare.com
 /news-portlet/html/counter-portlet/*$domain=eluniversal.com.co|elcolombiano.com|vanguardia.com.mx
 /html/js/iter-libraries/iter-statistics.js*$domain=eluniversal.com.co|elcolombiano.com|vanguardia.com.mx
 ||so-zou.jp/js/ga.js
@@ -189474,6 +189504,10 @@ $cookie=bf_visit
 ! Bad:  ||monerominer.rocks^$third-party (should be in adservers.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/229676
+! https://github.com/AdguardTeam/AdguardFilters/issues/229485
+||money.ca^$cookie=suid
+||moneywise.com^$cookie=suid
 ! gobankingrates.com
 ||gobankingrates.com^$cookie=visitor_id
 ! https://github.com/AdguardTeam/AdguardFilters/issues/229275
@@ -190538,6 +190572,9 @@ dlsdk.appsflyer.com^
 !
 ! NOTE: Regular rules
 !
+||upc.zztfly.com^
+||tracker.tianmu.mobi^
+||id6.me^
 ||mobileconfig.sascdn.com^
 ||cirrus-full-snapshots-track-csv-v1-0-na-prod.s3.amazonaws.com^
 ||analytics.pocketfm.com^
@@ -191862,6 +191899,9 @@ d4?appid*type*
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/229733
+@@||trackdesk.com/sign-in$domain=dashboard.naughtyaffiliates.com
+@@||trackdesk.com/api/node/settings/$domain=dashboard.naughtyaffiliates.com
 ! https://github.com/easylist/easylist/issues/23935
 @@||go.ezodn.com/ezvideo/$stylesheet,domain=open.video
 @@||open.video/ezais/analytics$~third-party
