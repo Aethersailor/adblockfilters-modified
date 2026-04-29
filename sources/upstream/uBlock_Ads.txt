@@ -461,6 +461,9 @@ spiele.bild.de##.ad-vertical-box
 ||servedby.adbility-media.com^$3p
 ! https://github.com/uBlockOrigin/uAssets/issues/9615
 bild.de##.main-nav .utilities > li:style(margin-left:-0.5px !important)
+! https://github.com/uBlockOrigin/uAssets/issues/32733
+*/www.bild.de/$media,redirect=noopmp3-0.1s
+bild.de##+js(nostif, , 101-250)
 
 ! https://github.com/uBlockOrigin/uAssets/issues/174
 ! https://github.com/uBlockOrigin/uAssets/issues/4106
@@ -8984,6 +8987,12 @@ n-tv.de,rtl.de##+js(set, Object.prototype.adReinsertion, noopFunc)
 player.rtl2.de##+js(set, getHomadConfig, noopFunc)
 ! https://www.ligainsider.de/ welect.de iFrame inside cookie banner
 ||damoh.welect.de^
+! https://github.com/uBlockOrigin/uAssets/issues/32740
+!#if ext_ubol
+welt.de##+js(trusted-prevent-fetch, aud.springserve.com, <VAST version="3.0"></VAST>)
+!#else
+welt.de##+js(no-fetch-if, aud.springserve.com, war:noop-vast3.xml)
+!#endif
 
 ! https://github.com/uBlockOrigin/uAssets/issues/7508#issuecomment-659267224
 ||damoh.gmx.*/*$media,redirect=noop-0.1s.mp3,1p
