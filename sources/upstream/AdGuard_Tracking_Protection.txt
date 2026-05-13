@@ -152,13 +152,26 @@ jrhokkaido.co.jp#%#//scriptlet('prevent-addEventListener', 'DOMContentLoaded', '
 firmwaredrive.com#%#setTimeout(function() { var el = document.querySelector('input[name="dfp"]'); if(el){el.value = '1234567890123456';} }, 300);
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167963
 wirkaufens.de#%#//scriptlet('trusted-replace-fetch-response', '/"ip":".*?"/', '"ip":""', 'api.ipify.org')
+!
+! Sensors Analytics
 ! https://github.com/AdguardTeam/AdguardFilters/issues/167885
-cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505', 'emptyObj')
-cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.use', 'noopFunc')
-cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.init', 'noopFunc')
-cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.track', 'noopFunc')
-cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.quick', 'noopFunc')
-cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.registerPage', 'noopFunc')
+fenbi.com,cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505', 'emptyObj')
+fenbi.com,cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.use', 'noopFunc')
+fenbi.com,cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.init', 'noopFunc')
+fenbi.com,cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.track', 'noopFunc')
+fenbi.com,cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.quick', 'noopFunc')
+fenbi.com,cib.com.cn,pconline.pcvideo.com.cn#%#//scriptlet('set-constant', 'sensorsDataAnalytic201505.registerPage', 'noopFunc')
+! https://github.com/AdguardTeam/AdguardFilters/issues/173678
+! https://github.com/AdguardTeam/AdguardFilters/issues/167552
+! https://github.com/AdguardTeam/AdguardFilters/issues/152478
+! https://github.com/AdguardTeam/AdguardFilters/issues/139949
+xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors', 'emptyObj')
+xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.init', 'noopFunc')
+xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.track', 'noopFunc')
+xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.quick', 'noopFunc')
+xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.login', 'noopFunc')
+xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.registerPage', 'noopFunc')
+!
 ! https://github.com/AdguardTeam/AdguardFilters/issues/166258
 yourstory.com#%#(()=>{const n=function(){};window.pa={avInsights:{Media:function(){return{set:n}}},setConfigurations:n,sendEvent:n,refresh:n,getVisitorId:n}})();
 ! https://github.com/AdguardTeam/AdguardFilters/issues/165757
@@ -245,16 +258,6 @@ member.neofinancial.com#%#//scriptlet('set-constant', '__fpjs_p_l_b.load', 'noop
 itsu.com#%#//scriptlet('set-constant', 'AtreemoTrackingLbr', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/140059
 pracuj.pl#%#//scriptlet('set-cookie-reload', 'gptrackCookie', '1')
-! https://github.com/AdguardTeam/AdguardFilters/issues/173678
-! https://github.com/AdguardTeam/AdguardFilters/issues/167552
-! https://github.com/AdguardTeam/AdguardFilters/issues/152478
-! https://github.com/AdguardTeam/AdguardFilters/issues/139949
-xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors', 'emptyObj')
-xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.init', 'noopFunc')
-xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.track', 'noopFunc')
-xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.quick', 'noopFunc')
-xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.login', 'noopFunc')
-xingyue.geely.com,tineco.com,galaxy.geely.com,guancha.cn#%#//scriptlet('set-constant', 'sensors.registerPage', 'noopFunc')
 ! https://github.com/AdguardTeam/AdguardFilters/issues/139139
 embed.rtl.hu#%#//scriptlet('set-constant', 'gemiusStream', 'emptyObj')
 embed.rtl.hu#%#//scriptlet('set-constant', 'gemiusStream.event', 'noopFunc')
@@ -79282,6 +79285,10 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||data-api.fenbi.com^
+||mpecom-analyticevents-prod.boyner.com.tr^
+||dlso-ap96.macgamingdb.app^
+||fm-analytics.cloudbees.io^
 ||mlm-tracking.meinestadt.de^
 ||stats.temptcdn.com^
 ||opt.mocortech.com^
@@ -182178,6 +182185,16 @@ mexc.com#%#//scriptlet('set-local-storage-item', '_yjsu_yjad', '$remove$')
 !
 ! NOTE: Specific rules
 !
+||thebell.io/o4e1/
+||boyner.com.tr/1eus/
+||test-api.ajansspor.xyz/analytics/
+||glassesusa.com/scripts/|
+||glassesusa.com/bff/dynamicYield/pageview
+/api/client-logs$domain=theridgefieldpress.com|thetelegraph.com|beaumontenterprise.com|bigrapidsnews.com|chron.com|ctinsider.com|ctpost.com|darientimes.com|seattlepi.com|expressnews.com|fuelfix.com|greenwichtime.com|houstonchronicle.com|lakecountystar.com|lmtonline.com|manisteenews.com|michigansthumb.com|middletownpress.com|milfordmirror.com|mrt.com|myjournalcourier.com|myplainview.com|mysanantonio.com|ncadvertiser.com|newstimes.com|nhregister.com|ourmidland.com|recordpatriot.com|registercitizen.com|seattlepi.com|sfchronicle.com|sfgate.com|sheltonherald.com|smallbusiness.chron.com|stamfordadvocate.com|theheraldreview.com|thehour.com|theintelligencer.com|timesunion.com|trumbulltimes.com|weekand.com|wiltonbulletin.com|work.chron.com|yourconroenews.com
+||movavi.com/proxysss/index.php
+||caido.io/stats/
+||bubilet.com.tr/metrics/
+||pandaproxy.production.cafemedia.com/topics/clickstream-event
 ||api.firecrown.com/v1/events
 ||autoguide.com/api/posts/*/impressions
 ||global.one.yomiuri.co.jp/ssc-ym-client.v*.js
@@ -189573,6 +189590,8 @@ $cookie=bf_visit
 ! Bad:  ||monerominer.rocks^$third-party (should be in adservers.txt)
 !
 !
+! detector404.ru
+||detector404.$cookie=tag
 ! mexc.com
 ||mexc.com^$cookie=sensorsdata2015jssdkcross
 ||mexc.com^$cookie=sajssdk_2015_cross_new_user
@@ -191976,6 +191995,9 @@ d4?appid*type*
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/230877
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||nodestatic.fbstatic.cn/weblts_spa_online/page/assets/files/sensorsdata.min.js
 ! https://github.com/uBlockOrigin/uAssets/issues/32857
 @@||dd.subito.it.first-party-js.datadome.co^$script,xmlhttprequest,domain=areariservata.subito.it
 ! https://github.com/AdguardTeam/AdguardFilters/issues/229453
@@ -195671,8 +195693,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 @@||rscdn.cxense.com/cx-test.js$domain=wsj.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21231
 @@||comcastresidentialservices.tt.omtrdc.net/m2/comcastresidentialservices^$domain=xfinity.com
-! https://github.com/AdguardTeam/AdguardFilters/issues/21326
-@@||googletagmanager.com/gtm.js^$domain=boyner.com.tr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21175
 @@||sb.scorecardresearch.com/beacon.js$domain=motorcyclenews.com
 ! https://github.com/AdguardTeam/AdguardFilters/issues/21125
@@ -196952,6 +196972,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||barbadoshello.com^
 ||barbarousbase.com^
 ||barbershirts.com^
+||barqueue.com^
 ||baseboosters.com^
 ||basilfish.com^
 ||basketballbelieve.com^
@@ -197382,6 +197403,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||earnbaht.com^
 ||earthlybuzz.com^
 ||earthups.com^
+||easysyncnews.com^
 ||eatablesquare.com^
 ||echoacloud.com^
 ||echoinghaven.com^
@@ -197429,6 +197451,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||epicoldschool.com^
 ||epicswimming.com^
 ||equablekettle.com^
+||esoterictools.com^
 ||essaygiants.com^
 ||essayspin.com^
 ||etherealbamboo.com^
@@ -197453,6 +197476,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||exuberantedge.com^
 ||fabcharting.com^
 ||fabledsoul.com^
+||fabulousbooking.com^
 ||facilitatebreakfast.com^
 ||factorybarbell.com^
 ||fadedsnow.com^
@@ -197889,6 +197913,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||logoshutter.com^
 ||lonelyflavor.com^
 ||longingtrees.com^
+||longloops.com^
 ||loosecase.com^
 ||looseloaf.com^
 ||lorenzourban.com^
@@ -197979,6 +198004,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||metajaws.com^
 ||metalbold.com^
 ||metawelcome.com^
+||midnightmead.com^
 ||mightyspiders.com^
 ||millswell.com^
 ||mimosamajor.com^
@@ -198152,6 +198178,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||pastoralroad.com^
 ||pawsnug.com^
 ||peacefullimit.com^
+||peakcreator.com^
 ||pearpouch.com^
 ||pedropanther.com^
 ||peeringhost.net^
