@@ -98,24 +98,16 @@ jobs:
           for attempt in $(seq 1 $max_attempts); do
             echo "SmartDNS setup attempt ${attempt}/${max_attempts}"
 
-            LATEST_URL=$(curl -fsSL https://api.github.com/repos/pymumu/smartdns/releases/latest \
-              | grep "browser_download_url" \
-              | grep "smartdns-x86_64" \
-              | cut -d '"' -f 4 || true)
-
-            if [ -z "$LATEST_URL" ]; then
-              echo "Failed to resolve SmartDNS download URL."
+            LATEST_URL="https://github.com/pymumu/smartdns/releases/latest/download/smartdns-x86_64"
+            echo "Downloading SmartDNS from: $LATEST_URL"
+            if wget -q "$LATEST_URL" -O "$SMARTDNS_PATH/smartdns" && [ -s "$SMARTDNS_PATH/smartdns" ]; then
+              chmod +x "$SMARTDNS_PATH/smartdns"
+              cp config/smartdns.conf "$SMARTDNS_PATH/smartdns.conf"
+              nohup "$SMARTDNS_PATH/smartdns" -f -x -c "$SMARTDNS_PATH/smartdns.conf" > /dev/null 2>&1 &
+              echo "SmartDNS started."
+              break
             else
-              echo "Downloading SmartDNS from: $LATEST_URL"
-              if wget -q "$LATEST_URL" -O "$SMARTDNS_PATH/smartdns" && [ -s "$SMARTDNS_PATH/smartdns" ]; then
-                chmod +x "$SMARTDNS_PATH/smartdns"
-                cp config/smartdns.conf "$SMARTDNS_PATH/smartdns.conf"
-                nohup "$SMARTDNS_PATH/smartdns" -f -x -c "$SMARTDNS_PATH/smartdns.conf" > /dev/null 2>&1 &
-                echo "SmartDNS started."
-                break
-              else
-                echo "SmartDNS download failed or empty binary."
-              fi
+              echo "SmartDNS download failed or empty binary."
             fi
 
             if [ "$attempt" -eq "$max_attempts" ]; then
