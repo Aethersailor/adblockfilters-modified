@@ -3854,7 +3854,6 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ||nstracking.com^$third-party
 ||ntlab.org^$third-party
 ||ntvk1.ru^$third-party
-||nuggad.net^$third-party
 ||numerino.cz^$third-party
 ||nyctrl32.com^$third-party
 ||oadz.com^$third-party
@@ -79298,6 +79297,7 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||analytics.pingaja.com^
 ||pulse.ftools.fluege.de^
 ||lex.toss.im^
 ||dsb.yahooapis.jp^
@@ -182206,6 +182206,13 @@ mexc.com#%#//scriptlet('set-local-storage-item', '_yjsu_yjad', '$remove$')
 !
 ! NOTE: Specific rules
 !
+||maltadaily.mt/api/ad-track|
+||citlekci.com.tr/*/sendEventV2|
+||linkedin.com/rest/trackObserveApi/trackObserve
+||linkedin.com/rest/trackO11yApi/trackO11y
+||linkedin.com/rest/trackingApiService/track
+||linkedin.com/li/tscp/sct
+||gatherer.m.qq.com/event/
 ||four.pichive.online/analytics.php?
 ||sozcu.com.tr/dist/analytics-client-
 ||glavnoe.in.ua/wp-json/views/v*/increment/
@@ -188006,6 +188013,13 @@ adguard.info,adguard.com,adguard.app#$#.hello_from_adguard_advanced_protection_i
 ! Bad:  ||example.com^$cookie=flat_r_mb (should be in cookies_specific.txt)
 !
 !
+! USA Today Co., Inc., (formerly Gannett)
+$cookie=gup_anonid
+$cookie=gup_clientid
+$cookie=gnt_ti
+$cookie=gnt_i
+! SnowPlow
+$cookie=/^_sp_id/
 ! Rakuten
 $cookie=rmStoreGateway
 ! Comscore
@@ -188896,7 +188910,6 @@ $cookie=bf_visit
 ||ridibooks.com$cookie=ruid
 ||ridibooks.com$cookie=/^AMP/
 ! spb.docdoc.ru
-||spb.docdoc.ru^$cookie=/^_sp_id\./
 ||spb.docdoc.ru^$cookie=deviceId
 ! coinstats.app
 ||coinstats.app^$cookie=temp_uid
@@ -189030,12 +189043,8 @@ $cookie=PAPVisitorId,domain=pelikan.cz|pelikan.hu|pelikan.sk
 ||azrhymes.com^$cookie=visitor
 ! pzfans.com
 ||pzfans.com^$cookie=ezosuibasgeneris-1
-! https://github.com/AdguardTeam/AdguardFilters/issues/213280
-||aviasales.$cookie=/^_sp_id/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213391
 ||flo.com.tr^$cookie=bunsar_visitor_id
-! https://github.com/AdguardTeam/AdguardFilters/issues/213403
-||huntress.com^$cookie=/^_sp_id/
 ! https://github.com/AdguardTeam/AdguardFilters/issues/212878
 ||soundcloud.com^$cookie=sc_anonymous_id
 ||soundcloud.com^$cookie=sc_tracking_anonymous_id
@@ -191281,6 +191290,15 @@ d4?appid*type*
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/231861
+@@||cnstrc.com/js/cust/indigo_pAkokG.js$domain=indigo.ca
+! https://github.com/AdguardTeam/AdguardFilters/issues/232066
+@@||onlinestarten.net/assets/*sn1_dvt-prod.js$domain=247sports.com
+@@||onlinestarten.net^$xmlhttprequest,domain=247sports.com
+! https://github.com/AdguardTeam/AdguardFilters/issues/231874
+pedalparts.co.kr#%#//scriptlet('set-constant', 'aCounterPageScriptGoodsView', 'noopFunc')
+!+ PLATFORM(ios, ext_android_cb, ext_safari)
+@@||cr.acecounter.com/Web/AceCounter_AW.js$domain=pedalparts.co.kr
 ! https://github.com/AdguardTeam/AdguardFilters/issues/231988
 footballtransfers.com#%#//scriptlet('prevent-element-src-loading', 'script', '/dotmetrics\.net|covatic\.io/')
 !#if (adguard_ext_safari || adguard_app_ios || adguard_ext_android_cb)
@@ -198304,7 +198322,7 @@ bolighub.dk#%#//scriptlet('ubo-acs', 'document.getElementsByTagName', 'gtm.js')
 apnews.com,artforum.com,artnews.com,billboard.com,calgaryherald.com,calgarysun.com,crooksandliars.com,deadline.com,dpreview.com,driving.ca,financialpost.com,goldderby.com,golfdigest.com,hollywoodreporter.com,indiewire.com,lfpress.com,nationalpost.com,nbcsports.com,ottawasun.com,robbreport.com,rollingstone.com,sherdog.com,sidereel.com,superherohype.com,techcrunch.com,torontosun.com,vancouversun.com,variety.com,vibe.com,windsorstar.com,wwd.com#%#//scriptlet('ubo-acs', 'document.getElementsByTagName', '.pubads')
 ranker.com#%#//scriptlet('ubo-aost', 'HTMLElement.prototype.insertBefore', '/[A-Z] .+chunks\/\d{4}\./')
 reuters.com#%#//scriptlet('ubo-aost', 'admiral', '.js?')
-attackofthefanboy.com,destructoid.com,edmontonsun.com,gamepur.com,gamerjournalist.com,gameskinny.com,macwelt.de,mlive.com,news8000.com,nj.com,primagames.com,siliconera.com,syracuse.com,themarysue.com,touchtapplay.com,wegotthiscovered.com#%#//scriptlet('ubo-aost', 'decodeURI', '/(?=^(?!.*\.js))/')
+attackofthefanboy.com,destructoid.com,edmontonsun.com,gamepur.com,gamerjournalist.com,gameskinny.com,lgbtqnation.com,macwelt.de,mlive.com,news8000.com,nj.com,primagames.com,siliconera.com,syracuse.com,themarysue.com,touchtapplay.com,wegotthiscovered.com#%#//scriptlet('ubo-aost', 'decodeURI', '/(?=^(?!.*\.js))/')
 247sports.com,cbsnews.com,cbssports.com,indiewire.com,masslive.com,nypost.com,pagesix.com,pennlive.com,syracuse.com#%#//scriptlet('ubo-rmnt', 'script', '"data-adm-url"')
 abc17news.com,al.com,artforum.com,artnews.com,awkward.com,awkwardmom.com,bailiwickexpress.com,barnsleychronicle.com,becomingpeculiar.com,bethcakes.com,blogher.com,bluegraygal.com,briefeguru.de,carmagazine.co.uk,cattime.com,cbr.com,chaptercheats.com,cleveland.com,collider.com,comingsoon.net,commercialobserver.com,competentedigitale.ro,crafty.house,dailyvoice.com,decider.com,didyouknowfacts.com,dogtime.com,dualshockers.com,dustyoldthing.com,faithhub.net,femestella.com,footwearnews.com,freeconvert.com,frogsandsnailsandpuppydogtail.com,fsm-media.com,funtasticlife.com,fwmadebycarli.com,gamerant.com,gfinityesports.com,givemesport.com,gulflive.com,helloflo.com,homeglowdesign.com,honeygirlsworld.com,hotcars.com,howtogeek.com,insider-gaming.com,insurancejournal.com,jasminemaria.com,kion546.com,lehighvalleylive.com,lettyskitchen.com,lifeinleggings.com,liveandletsfly.com,lizzieinlace.com,localnews8.com,lonestarlive.com,madeeveryday.com,maidenhead-advertiser.co.uk,makeuseof.com,mardomreport.net,masslive.com,melangery.com,milestomemories.com,mlive.com,modernmom.com,momtastic.com,mostlymorgan.com,motherwellmag.com,movieweb.com,muddybootsanddiamonds.com,musicfeeds.com.au,nationalreview.com,nj.com,nordot.app,nothingbutnewcastle.com,nsjonline.com,oakvillenews.org,observer.com,oregonlive.com,pagesix.com,pennlive.com,pinkonthecheek.com,predic.ro,puckermom.com,qtoptens.com,realgm.com,robbreport.com,royalmailchat.co.uk,samchui.com,sandrarose.com,screenrant.com,sheknows.com,sherdog.com,sidereel.com,silive.com,simpleflying.com,sloughexpress.co.uk,spacenews.com,sportsgamblingpodcast.com,spotofteadesigns.com,ssnewstelegram.com,stacysrandomthoughts.com,superherohype.com,syracuse.com,tablelifeblog.com,thebeautysection.com,thecelticblog.com,thecurvyfashionista.com,thefashionspot.com,thegamer.com,thenerdyme.com,thenonconsumeradvocate.com,thethings.com,timesnews.net,topspeed.com,toyotaklub.org.pl,travelingformiles.com,tvline.com#%#//scriptlet('ubo-rmnt', 'script', '"v4ac1eiZr0"')
 baeldung.com,cheatsheet.com,pwinsider.com#%#//scriptlet('ubo-rmnt', 'script', 'admiral')
@@ -198393,6 +198411,9 @@ bitdefender.com#$#body[style="opacity: 0;"] { opacity: 1 !important; }
 !       %2Fpix.gif%3F$image
 ! Bad:  ||newegg.com/mr/ (for instance, should be in specific.txt)
 !
+! Adobe Campaign
+/r/?id=$image
+%2Fr%2F%3Fid%3D$image
 ! Constant Contact
 .cc.rs6.net/on.jsp$image
 .cc.rs6.net%2Fon.jsp$image
@@ -198732,8 +198753,10 @@ e.mail.cnn.com$image
 ! esputnik.com
 esputnik.com$image
 ! Adobe Campaign
-/r/?id=$image
-%2Fr%2F%3Fid%3D$image
+postoffice.adobe.com/po-server/link/open$image
+postoffice.adobe.com%2Fpo-server%2Flink%2Fopen$image
+apo-prod.adobe.io/po-server/link/open$image
+apo-prod.adobe.io%2Fpo-server%2Flink%2Fopen$image
 sbs-mkt-stage1-res.adobe-campaign.com$image
 ! demdex.net
 demdex.net/event?d_src=$image
