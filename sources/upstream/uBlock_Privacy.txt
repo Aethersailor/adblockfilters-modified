@@ -1131,7 +1131,11 @@ arstechnica.com,dermnetnz.org##.gsc-webResult a[data-cturl]:remove-attr(/^data-c
 www.youtube.com##+js(no-xhr-if, /\/api\/stats\/atr\?.+?&rt=\d+\.\d+.+?&volume=\d+&cbr=.+?&fexp=v1%[-%0-9C]{300\,}&.+?&muted=\d(&vis=3)?&docid=/ method:POST)
 ! 1st-party google tag manager script
 /^https:\/\/(www\.)?[a-z0-9]+\.[a-z]+(\.[a-z]+)?\/[a-z0-9]{4}\/$/$script,1p,match-case
+! petametrics
+||petametrics.com^$~script
 !#endif
+||petametrics.com/*/__activity.
+||paytr.com/securemetric/
 ||youtube.com/youtubei/v1/log_event
 
 ! https://github.com/AdguardTeam/AdguardFilters/issues/213240
@@ -2051,7 +2055,9 @@ r.mail.wowvegas.com%2Ftr%2Fop%2F*$image
 ! twitter
 /twitter.com/scribe/ibis?$image
 *%2Ftwitter.com%2Fscribe%2Fibis%3F*$image
+! https://github.com/uBlockOrigin/uAssets/issues/33072
 ||api.x.com/1.1/graphql/error_log.json
+||x.com/i/api/1.1/graphql/user_flow.json
 ! shopee
 /tracking.mail.shopee.$image
 *%2Ftracking.mail.shopee.$image
@@ -2960,6 +2966,8 @@ dmax.de##.block-user:remove-class(block-user)
 ||linksynergy.com^$doc,reason=tracker
 ||onelink.me/*&af_web_dp=$doc,reason=tracker
 ||onelink.me/*&af_web_dp=$urlskip=?af_web_dp
+||cxad.cxense.com^$doc,badfilter
+||cxad.cxense.com^$doc,reason=tracker
 
 ! https://github.com/uBlockOrigin/uAssets/pull/30819
 ||blog.skk.moe/_next/data/*/post/*.json$method=post,xhr,redirect=nooptext
