@@ -411,11 +411,13 @@ colamanga.com#$#div[class^="layui-layer-"]:not(#color) { display: none !importan
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||colamanga.com^$generichide
 ! https://github.com/AdguardTeam/AdguardFilters/issues/177065
-bilinovel.com#%#//scriptlet('set-constant', 'checkAndHandleAdBlock', 'undefined')
-bilinovel.com#%#//scriptlet('abort-current-inline-script', 'document.createElement', 'pagead2.googlesyndication.com')
+bilinovel.com#%#//scriptlet('prevent-setTimeout', 'offsetHeig\'+\'ht\']')
 !+ PLATFORM(ios, ext_android_cb, ext_safari)
 @@||pagead2.googlesyndication.com/pagead/js/adsbygoogle.js$domain=bilinovel.com
 !#if (adguard_app_ios || adguard_app_android)
+@@||pagead2.googlesyndication.com/pagead/js/lidar.js$domain=bilinovel.com
+@@||googleads.g.doubleclick.net/pagead/ads?client=ca-pub-$domain=bilinovel.com
+@@||pagead2.googlesyndication.com/pagead/*.js?fcd=true$domain=bilinovel.com
 bilinovel.com#@#.adsbygoogle-noablate
 bilinovel.com#@#ins.adsbygoogle[data-ad-slot]
 bilinovel.com#@#ins.adsbygoogle[data-ad-client]
@@ -1322,6 +1324,11 @@ $script,xmlhttprequest,third-party,domain=00ksw.com|01zww.com|0biquge.com|114zw.
 !
 ! NOTE: Specific rules
 !
+||zudns.cn/uploads/*.gif$image,domain=tcptest.cn
+tcptest.cn##div.min-w-0 > .relative
+tcptest.cn##div.fixed.hidden
+xchina.co##.photo-items > div[class^="item auto-height"]
+techritual.com##.th-single-ad
 ||newtalk.tw/js/ad/
 newtalk.tw##.ad-half
 tupaki.com##div[id^="detail_wrap_ad"]
@@ -1362,10 +1369,10 @@ free.com.tw##.advads-entity-placement
 huavod.top,huaren.live,huavod.com,huavod.net##a[href^="/go/baba/"]
 *$script,xmlhttprequest,third-party,domain=m.niupizhi.net
 ||m.niupizhi.net/lokedpgdjs
-||cdn.rrmj.plus/c-next/mapp/*/layout-$script,replace=/firstAdMaxFreeTimes:\d+/firstAdMaxFreeTimes:30000/,domain=m.yichengwlkj.com
-||cdn.rrmj.plus/c-next/mapp/*/layout-$script,replace=/secondsAdMaxTimes:\d+/secondsAdMaxTimes:150000/,domain=m.yichengwlkj.com
-||cdn.rrmj.plus/ad_4k.mp4$media,redirect=noopmp3-0.1s,domain=m.yichengwlkj.com
-||m.yichengwlkj.com/ssp_ad_sdk.js
+||cdn.rrmj.plus/c-next/mapp/*/layout-$script,replace=/firstAdMaxFreeTimes:\d+/firstAdMaxFreeTimes:30000/,domain=yichengwlkj.com
+||cdn.rrmj.plus/c-next/mapp/*/layout-$script,replace=/secondsAdMaxTimes:\d+/secondsAdMaxTimes:150000/,domain=yichengwlkj.com
+||cdn.rrmj.plus/ad_4k.mp4$media,redirect=noopmp3-0.1s,domain=yichengwlkj.com
+||yichengwlkj.com/ssp_ad_sdk.js
 cna.com.tw##.advertiseTopArticlePad
 post.smzdm.com##.side-eleven-activity
 ||91jp3.beauty/abc/data*.json
@@ -5671,10 +5678,33 @@ newduba.cn###jq_youxi
 .z.dkt-ib.com
 ||cnzz.trafficmanager.net^
 ||cupfox.app^$third-party
+||nbwsj9gnd.com^
+||t19olm6fd.com^
+||dukwznn0x.com^
+||taproot44.com^
+||jhpqntyyeezpds.com^
+||qihang168.top^
+||magnolia77.top^
+||ej8f5vk381.com^
+||hzyolohcz6.com^
+||balsam18.com^
+||cvd2jag5ru.com^
+||ppkufuc5vg.com^
+||cf7xvu3z6z.com^
+||hzvnt399h7.com^
+||x7weiubb2f.com^
+||5cyqzktkwh.com^
+||letvdbrwhbnhrs.com^
 ||90tsdpml6.com^
 ||quu175kt3.com^
 ||freesia45.top^
 ||jasmine33.top^
+||vd09de2i0.com^
+||xzv5vu7wl.com^
+||9pyn42z6d.com^
+||rl8yj74pr.com^
+||1ehioxpqe.com^
+||thgh902ny.com^
 ||d1129ldr7.com^
 ||ddhwxwi6h.com^
 ||wk5fo6pyf.com^
