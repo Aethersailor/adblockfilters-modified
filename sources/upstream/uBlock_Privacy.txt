@@ -1130,8 +1130,12 @@ arstechnica.com,dermnetnz.org##.gsc-webResult a[data-cturl]:remove-attr(/^data-c
 ! Block Attribution reporting
 www.youtube.com##+js(no-xhr-if, /\/api\/stats\/atr\?.+?&rt=\d+\.\d+.+?&volume=\d+&cbr=.+?&fexp=v1%[-%0-9C]{300\,}&.+?&muted=\d(&vis=3)?&docid=/ method:POST)
 ! 1st-party google tag manager script
-/^https:\/\/(www\.)?[a-z0-9]+\.[a-z]+(\.[a-z]+)?\/[a-z0-9]{4,8}\/$/$script,1p,match-case
+/^https:\/\/(www\.)?[a-z0-9]+\.[a-z]+(\.[a-z]+)?\/[a-z0-9]{4,8}\/?$/$script,1p,match-case
 @@/jsi18n/|$script,1p
+! https://github.com/uBlockOrigin/uAssets/issues/33157
+||zoom.us/*/app-telemetry.
+||zoom.us/*/fingerprintjs-
+||zoom.us/user/anonymous/telemetry
 ! petametrics
 ||petametrics.com^$~script
 !#endif
@@ -1422,6 +1426,7 @@ $removeparam=fbadid
 $removeparam=ymclid
 $removeparam=ysclid
 $removeparam=yclid
+$removeparam=ym_tracking_id
 ! https://help.ads.microsoft.com/apex/index/3/en/60000
 $removeparam=msclkid
 ! Wicked Reports click tracking
