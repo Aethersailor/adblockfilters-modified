@@ -561,6 +561,7 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 !
 !
 !
+||umami.vidcore.net^
 ||g10498469755.co^
 ||handler.rgstats.com^
 ||identity.treeumapp.net^
@@ -79301,6 +79302,8 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||browser.pipe.aria.microsoft.com^
+||go-usertrack-importer.pub.rtl-api.com^
 ||stats.peachify.top^
 ||stats.index.hr^
 ||feast-events.guardianapis.com^
@@ -182215,6 +182218,16 @@ mexc.com#%#//scriptlet('set-local-storage-item', '_yjsu_yjad', '$remove$')
 !
 ! NOTE: Specific rules
 !
+||m365.cloud.microsoft/client_health_ping
+||m365.cloud.microsoft/events
+||substrate.office.com/search/api/v1/events
+||realmadryt.pl/api/v1/client-log|$important
+||track.psatcrm.com/tracker.js
+dn.pt#%#//scriptlet('set-local-storage-item', 'aries__uuid', '$remove$')
+dn.pt#%#//scriptlet('set-local-storage-item', 'altair', '$remove$')
+||dn.pt/scooby/api/v*/log/
+||sapo.pt/metrics
+||sapo.pt/assets/sapix.gif
 motortrend.com#%#//scriptlet('set-local-storage-item', 'mtid', '$remove$')
 digitalspy.com##.inline-content-module:has(.cx-flex-module)
 ||chibanippo.co.jp/api/page-tracker
@@ -182645,7 +182658,6 @@ olympics.com##section[data-cy="story-parts-wrapper"] > div:not([data-cy]):has(re
 ||marketplace.anyclip.com/v*/lre-events
 /log/client/messages$domain=momondo.com|kayak.com
 /s/vestigo/measure$domain=momondo.com|kayak.com
-||ir.ebaystatic.com/*/s_1x2.gif
 gamespot.com#%#//scriptlet('set-local-storage-item', 'ppid', '$remove$')
 ||openway.deepseeksvc.com/v*/write/rum
 ||l.search.naver.com/n/responsive/*&no_qc=*&p=
@@ -188046,6 +188058,8 @@ adguard.info,adguard.com,adguard.app#$#.hello_from_adguard_advanced_protection_i
 ! Bad:  ||example.com^$cookie=flat_r_mb (should be in cookies_specific.txt)
 !
 !
+! Newspack
+$cookie=newspack-cid
 ! AppsFlyer
 $cookie=af_id
 $cookie=afUserId
@@ -188928,6 +188942,8 @@ $cookie=bf_visit
 ! Bad:  ||monerominer.rocks^$third-party (should be in adservers.txt)
 !
 !
+! rtl.hr
+||rtl.hr^$cookie=device-id
 ! ahaber.com.tr
 ||ahaber.com.tr^$cookie=VideoSessionId
 ! detector404.ru
@@ -191329,6 +191345,8 @@ d4?appid*type*
 !
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/139956
+@@||smetrics.airmiles.ca/*identity/acquire?$domain=oauth.airmiles.ca
 ! https://aswbe.ana.co.jp/webapps/reservation/payment-input
 @@||mpsnare.iesnare.com/snare.js$domain=aswbe.ana.co.jp
 @@||mpsnare.iesnare.com/script/logo.js$domain=aswbe.ana.co.jp
@@ -196898,6 +196916,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||filtercutter.com^
 ||finalizeforce.com^
 ||financefear.com^
+||findyourdelight.com^
 ||firecatfilms.com^
 ||fireworkcamp.com^
 ||firstendpoint.com^
@@ -197014,7 +197033,6 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||golfcartlaws.com^
 ||golfersrow.com^
 ||gondolagnome.com^
-||goodbark.com^
 ||gorgeousedge.com^
 ||gorillapage.com^
 ||gossamerwing.com^
