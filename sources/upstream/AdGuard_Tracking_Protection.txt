@@ -12,6 +12,14 @@
 ! Bad: example.org###rek (should be in specific.txt)
 !
 !
+! https://github.com/AdguardTeam/AdguardFilters/issues/232549
+! Disable because of these reports:
+! https://github.com/AdguardTeam/AdguardFilters/issues/233039
+! https://github.com/AdguardTeam/AdguardFilters/issues/233148
+! https://github.com/AdguardTeam/AdguardFilters/issues/233149
+! bilibili.com#%#//scriptlet('trusted-replace-argument', 'history.pushState', '2', 'repl:/(?<=[?&])(?:vd_source|trackid|spm_id_from)=[^&#]*&?//g')
+! bilibili.com#%#//scriptlet('trusted-replace-argument', 'history.replaceState', '2', 'repl:/(?<=[?&])(?:vd_source|trackid|spm_id_from)=[^&#]*&?//g')
+!
 ! Youtube
 !+ NOT_PLATFORM(ext_chromium_mv3)
 www.youtube.com#%#//scriptlet('prevent-xhr', '/\/api\/stats\/atr\?.+?&rt=\d+\.\d+.+?&volume=\d+&cbr=.+?&fexp=v1%[-%0-9C]{300,}&.+?&muted=\d(&vis=3)?&docid=/ method:POST')
@@ -561,6 +569,8 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 !
 !
 !
+||umami.vidup.to^
+||umami.vidfast.pro^
 ||umami.vidcore.net^
 ||g10498469755.co^
 ||handler.rgstats.com^
@@ -1079,7 +1089,6 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ||logg9r.io^
 ||api.statsig.com^
 ||beyondwickedmapping.org^
-||featureassets.org^
 ||gw.conversionsapigateway.com^
 ||bicp-analytics.postscript.io^
 ||mktp-base.mktplatforms.com^
@@ -79302,6 +79311,10 @@ biteki.com#$?#.slick-slide > div[id] + script:upward(1) { remove: true; }
 ! Blocking piwik analytics subdomain(for DNS filtering)
 |piwik.
 !
+||analytics.oeksound.com^
+||dd.qwant.com^
+||k.qwant.com^
+||statikk.modelviewer.lol^
 ||browser.pipe.aria.microsoft.com^
 ||go-usertrack-importer.pub.rtl-api.com^
 ||stats.peachify.top^
@@ -182218,6 +182231,11 @@ mexc.com#%#//scriptlet('set-local-storage-item', '_yjsu_yjad', '$remove$')
 !
 ! NOTE: Specific rules
 !
+||oeksound.com/pl/api/event
+||featureassets.org^$xmlhttprequest
+||qwant.com/action/
+||qwant.com/nemo-telemetry/
+||analiz.habersoft.com/collect.js
 ||m365.cloud.microsoft/client_health_ping
 ||m365.cloud.microsoft/events
 ||substrate.office.com/search/api/v1/events
@@ -182403,8 +182421,7 @@ giga.chat#%#//scriptlet('set-local-storage-item', '/DEVICE_ID/', '$remove$')
 ||common-api.rozetka.*/collect/
 ||aizhantj.com*/tjpv/?cc=
 ||goto.startracking.ru/api/v1/impression?aff_id=
-||users.videasy.to/api/track
-||users.videasy.net/api/track
+||users.videasy.*/api/track
 ||rs.kuper.ru/v*/track
 ||rs.kuper.ru/v*/batch|
 ||cpa.kuper.ru/api/tracker/
@@ -197123,6 +197140,7 @@ kizi.com#%#window.google_trackConversion = function() {};
 ||honorablehydrant.com^
 ||honorableland.com^
 ||hookconference.com^
+||hoorayplay.com^
 ||hospitablehall.com^
 ||hospitablehat.com^
 ||howdoesthislook.com^
