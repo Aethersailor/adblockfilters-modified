@@ -1,38 +1,50 @@
+import os
 import subprocess
 import sys
 
 
 FILES = [
     "rules/adblockdns.txt",
+    "rules/adblockdnslite.txt",
     "rules/adblockdomain.txt",
+    "rules/adblockdomainlite.txt",
     "rules/adblockfilters.txt",
+    "rules/adblockfilterslite.txt",
+    "rules/adblockmihomo.yaml",
+    "rules/adblockmihomolite.yaml",
+    "rules/adblockrouteros.txt",
+    "rules/adblockrouteroslite.txt",
+    "rules/adblockrouterosadlist.txt",
+    "rules/adblockrouterosadlistlite.txt",
+    "rules/adblocksingbox.json",
+    "rules/adblocksingboxlite.json",
 ]
 MIN_RATIO = 0.7
 MAX_RATIO = 1.5
 MIN_ABS = 10000
 
 
-def count_lines(text: str) -> int:
-    return sum(1 for line in text.splitlines() if line.strip())
+def count_binary_lines(stream) -> int:
+    return sum(1 for line in stream if line.strip())
 
 
 def get_prev_count(path: str):
-    result = subprocess.run(
+    process = subprocess.Popen(
         ["git", "show", "HEAD:%s" % path],
         stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        text=True,
+        stderr=subprocess.DEVNULL,
     )
-    if result.returncode != 0:
+    if process.stdout is None:
         return None
-    return count_lines(result.stdout)
+    count = count_binary_lines(process.stdout)
+    return count if process.wait() == 0 else None
 
 
 def get_cur_count(path: str):
     try:
-        with open(path, "r") as f:
-            return count_lines(f.read())
-    except Exception:
+        with open(path, "rb") as f:
+            return count_binary_lines(f)
+    except OSError:
         return None
 
 
@@ -49,7 +61,7 @@ def is_anomalous(new_count: int, old_count: int) -> bool:
 
 
 def main() -> int:
-    warned = False
+    anomalies = []
     for path in FILES:
         old_count = get_prev_count(path)
         new_count = get_cur_count(path)
@@ -60,9 +72,17 @@ def main() -> int:
                 "warning: rule count anomaly: %s old=%d new=%d"
                 % (path, old_count, new_count)
             )
-            warned = True
-    if warned:
-        print("warning: rule count anomalies detected, continue without blocking")
+            anomalies.append(path)
+    if anomalies:
+        if os.environ.get("ALLOW_RULE_COUNT_ANOMALY", "").lower() in {
+            "1",
+            "true",
+            "yes",
+        }:
+            print("warning: rule count anomalies explicitly allowed")
+            return 0
+        print("error: rule count anomalies detected; refusing to publish")
+        return 1
     return 0
 
 

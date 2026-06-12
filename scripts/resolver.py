@@ -5,7 +5,6 @@ import ipaddress
 from typing import Tuple, Dict, Set, List, NamedTuple, Optional
 
 from tld import get_tld
-import IPy
 from loguru import logger
 
 from readme import Rule
@@ -92,8 +91,7 @@ class Resolver(object):
             subdomain = self.__normalize_domain(res.subdomain) if res.subdomain else ''
         except Exception as e:
             try:
-                ip_address = IPy.IP(address)
-                if ip_address.iptype() == "PUBLIC":
+                if ipaddress.ip_address(address).is_global:
                     ip = address
             except Exception as e:
                 pass

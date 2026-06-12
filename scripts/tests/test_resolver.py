@@ -12,9 +12,13 @@ class ResolverTests(unittest.TestCase):
         self.resolver = Resolver(".")
 
     def test_analysis_ipv6(self):
-        address, sub = self.resolver._Resolver__analysis("2001:db8::1")
-        self.assertEqual(address, "2001:db8::1")
+        address, sub = self.resolver._Resolver__analysis("2606:4700:4700::1111")
+        self.assertEqual(address, "2606:4700:4700::1111")
         self.assertEqual(sub, "")
+
+    def test_analysis_rejects_reserved_ipv6(self):
+        with self.assertRaisesRegex(Exception, "not domain or public ip"):
+            self.resolver._Resolver__analysis("2001:db8::1")
 
     def test_filter_target_domain(self):
         _, info = self.resolver._Resolver__resolveFilterDomain("||Example.COM^$script")

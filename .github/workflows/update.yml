@@ -1,6 +1,17 @@
 name: Update Filters
-on: 
+on:
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Commit and push generated rules to the selected branch
+        required: true
+        type: boolean
+        default: false
+      allow_rule_count_anomaly:
+        description: Allow publishing unusually large rule count changes
+        required: true
+        type: boolean
+        default: false
   schedule:
   - cron: 0 1 * * *
 
@@ -11,8 +22,13 @@ concurrency:
 env:
   TZ: Asia/Shanghai
   SMARTDNS_PATH: /tmp/smartdns
+  SMARTDNS_VERSION: Release48.1
+  SMARTDNS_SHA256: 41e18ff27841495382e08ba7c126755e97e4ee543e41df9553fd00e65734c450
   SINGBOX_VERSION: 1.12.12
   MIHOMO_VERSION: 1.19.16
+  BLACKLIST_DNS_CONCURRENCY: 300
+  BLACKLIST_DNS_RETRIES: 1
+  BLACKLIST_BATCH_SIZE: 30000
 
 permissions:
   contents: write
@@ -21,17 +37,21 @@ permissions:
 jobs:
   Update_Filters:
     runs-on: ubuntu-latest
+    timeout-minutes: 300
+    outputs:
+      published: ${{ steps.publish.outputs.published }}
 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v6
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
-      - name: Setup Python 3.9.x
+      - name: Setup Python 3.12
         uses: actions/setup-python@v6
         with:
-          python-version: '3.9'
+          python-version: '3.12'
+          cache: pip
 
       - name: Install Dependencies
         run: |
@@ -39,11 +59,11 @@ jobs:
           sudo apt-get install -y wget gzip
           sudo timedatectl set-timezone "$TZ"
           python -m pip install --upgrade pip
-          pip install -U tld IPy dnspython httpx loguru pytricia
+          pip install --requirement requirements.txt
 
-      - name: Update local branch
+      - name: Run unit tests
         run: |
-          git pull --rebase origin main
+          python -m unittest discover -s scripts/tests -v
 
       - name: Sync upstream whitelist
         run: |
@@ -98,9 +118,11 @@ jobs:
           for attempt in $(seq 1 $max_attempts); do
             echo "SmartDNS setup attempt ${attempt}/${max_attempts}"
 
-            LATEST_URL="https://github.com/pymumu/smartdns/releases/latest/download/smartdns-x86_64"
-            echo "Downloading SmartDNS from: $LATEST_URL"
-            if wget -q "$LATEST_URL" -O "$SMARTDNS_PATH/smartdns" && [ -s "$SMARTDNS_PATH/smartdns" ]; then
+            SMARTDNS_URL="https://github.com/pymumu/smartdns/releases/download/${SMARTDNS_VERSION}/smartdns-x86_64"
+            echo "Downloading SmartDNS from: $SMARTDNS_URL"
+            if wget --quiet --timeout=30 --tries=3 "$SMARTDNS_URL" -O "$SMARTDNS_PATH/smartdns" \
+              && [ -s "$SMARTDNS_PATH/smartdns" ] \
+              && echo "${SMARTDNS_SHA256}  ${SMARTDNS_PATH}/smartdns" | sha256sum --check --strict; then
               chmod +x "$SMARTDNS_PATH/smartdns"
               cp config/smartdns.conf "$SMARTDNS_PATH/smartdns.conf"
               nohup "$SMARTDNS_PATH/smartdns" -f -x -c "$SMARTDNS_PATH/smartdns.conf" > /dev/null 2>&1 &
@@ -155,6 +177,7 @@ jobs:
           PY
 
       - name: Generate blacklist and China list
+        timeout-minutes: 240
         run: |
           python scripts/blacklist.py
 
@@ -167,12 +190,14 @@ jobs:
           echo "message=chore(rules): update filters and blacklist [$(TZ='Asia/Shanghai' date +'%F %T%:z')]" >> $GITHUB_OUTPUT
 
       - name: Validate rule counts
+        env:
+          ALLOW_RULE_COUNT_ANOMALY: ${{ inputs.allow_rule_count_anomaly || 'false' }}
         run: |
           python scripts/validate_rule_counts.py
 
       - name: Compile Sing-Box filters
         run: |
-          wget https://github.com/SagerNet/sing-box/releases/download/v${{env.SINGBOX_VERSION}}/sing-box-${{env.SINGBOX_VERSION}}-linux-amd64.tar.gz
+          wget --quiet --timeout=30 --tries=3 https://github.com/SagerNet/sing-box/releases/download/v${{env.SINGBOX_VERSION}}/sing-box-${{env.SINGBOX_VERSION}}-linux-amd64.tar.gz
           tar -zxvf sing-box-${{env.SINGBOX_VERSION}}-linux-amd64.tar.gz
           chmod +x sing-box-${{env.SINGBOX_VERSION}}-linux-amd64/sing-box
           ./sing-box-${{env.SINGBOX_VERSION}}-linux-amd64/sing-box rule-set compile --output rules/adblocksingbox.srs     rules/adblocksingbox.json
@@ -181,22 +206,41 @@ jobs:
       
       - name: Compile mihomo filters
         run: |
-          wget https://github.com/MetaCubeX/mihomo/releases/download/v${{env.MIHOMO_VERSION}}/mihomo-linux-amd64-v${{env.MIHOMO_VERSION}}.gz
+          wget --quiet --timeout=30 --tries=3 https://github.com/MetaCubeX/mihomo/releases/download/v${{env.MIHOMO_VERSION}}/mihomo-linux-amd64-v${{env.MIHOMO_VERSION}}.gz
           gzip -d mihomo-linux-amd64-v${{env.MIHOMO_VERSION}}.gz
           chmod +x mihomo-linux-amd64-v${{env.MIHOMO_VERSION}}
           ./mihomo-linux-amd64-v${{env.MIHOMO_VERSION}} convert-ruleset domain yaml rules/adblockmihomo.yaml     rules/adblockmihomo.mrs
           ./mihomo-linux-amd64-v${{env.MIHOMO_VERSION}} convert-ruleset domain yaml rules/adblockmihomolite.yaml rules/adblockmihomolite.mrs
           rm -rf mihomo*
+
+      - name: Validate public rule paths
+        run: |
+          python scripts/validate_public_rules.py
       
+      - name: Upload failure diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: update-failure-${{ github.run_id }}
+          path: |
+            /tmp/smartdns/smartdns.log
+            /tmp/smartdns/smartdns.conf
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Commit and push changes
+        id: publish
+        if: github.event_name == 'schedule' || inputs.publish
         run: |
           set -e
+          target_branch="${GITHUB_REF_NAME}"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add -A
           if git diff --cached --quiet; then
             echo "No changes to commit."
+            echo "published=false" >> "$GITHUB_OUTPUT"
             exit 0
           fi
 
@@ -205,11 +249,14 @@ jobs:
           max_attempts=3
           for attempt in $(seq 1 $max_attempts); do
             echo "Push attempt ${attempt}/${max_attempts}"
-            git fetch origin main
-            git rebase origin/main
-            if git push origin HEAD:main; then
+            if git push origin "HEAD:$target_branch"; then
               echo "Pushed successfully."
+              echo "published=true" >> "$GITHUB_OUTPUT"
               exit 0
+            fi
+            if [ "$attempt" -lt "$max_attempts" ]; then
+              git fetch --deepen=5 origin "$target_branch"
+              git rebase "origin/$target_branch"
             fi
             sleep $((attempt * 5))
           done
@@ -219,33 +266,46 @@ jobs:
   
   Refresh_CDN:
     needs: [ Update_Filters ]
+    if: needs.Update_Filters.outputs.published == 'true'
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v6
-      
-      - name: Setup Python 3.9.x
-        uses: actions/setup-python@main
         with:
-          python-version: '3.9.x'
+          fetch-depth: 1
+      
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -U tld IPy dnspython httpx loguru
+          pip install --requirement requirements.txt
       
-      - name: Refsh CDN Cache
+      - name: Refresh CDN Cache
         run: |
           python scripts/refreshcdn.py
 
   Delete_Workflow_Runs:
     needs: [ Refresh_CDN ]
+    if: needs.Refresh_CDN.result == 'success'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@main
-        with:
-          retain_days: 1
-          keep_minimum_runs: 5
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cutoff="$(date --utc --date='1 day ago' +'%Y-%m-%dT%H:%M:%SZ')"
+          gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/update.yml/runs?per_page=100" \
+            --jq ".workflow_runs[5:][] | select(.created_at < \"$cutoff\") | .id" \
+            | while read -r run_id; do
+                echo "Deleting workflow run ${run_id}"
+                gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${run_id}" --method DELETE
+              done
