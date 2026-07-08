@@ -1,5 +1,10 @@
 > [!CAUTION]
-> **本项目 Actions 会触发 GitHub 的 Actions 滥用限制，导致封号。因此本项目停止维护。**
+> **本项目的 Workflow 曾触发 GitHub Actions 的滥用检测，导致项目维护者的 GitHub 账号被封禁，因此本项目停止维护。**
+> **如需继续使用，建议使用 Self-hosted Runner 运行 Workflow。**
+
+> [!CAUTION]
+> **The workflow in this project previously triggered GitHub Actions' abuse detection, resulting in the suspension of the maintainer's GitHub account. As a result, this project is no longer maintained.**
+> **If you wish to continue using it, it is recommended to run the workflow on a self-hosted runner.**
 
 # AdBlock DNS Filters Modified
 [217heidai/adblockfilters](https://github.com/217heidai/adblockfilters) 去广告合并规则增强版，每天更新一次。  
