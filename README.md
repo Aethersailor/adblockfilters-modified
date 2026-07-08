@@ -1,3 +1,6 @@
+> [!CAUTION]
+> **本项目 Actions 会触发 GitHub 的 Actions 滥用限制，导致封号。因此本项目停止维护。**
+
 # AdBlock DNS Filters Modified
 [217heidai/adblockfilters](https://github.com/217heidai/adblockfilters) 去广告合并规则增强版，每天更新一次。  
 
